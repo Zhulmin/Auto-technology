@@ -2,9 +2,12 @@
 
 
 ### 持续集成 CI
-使用 Jenkins 和 [fastlane](https://github.com/fastlane/fastlane) 实现自动化测试打包发布AppStore等平台
+使用 Jenkins 和 [fastlane](https://github.com/fastlane/fastlane) 实现自动化测试打包发布AppStore等平台  
+Jenkins 只用于持续集成, Jenkins的xcode插件超级难用  
+fastlane 用于自动打包/发布  
   
-fastlane文件实例: 自定义lane 
+  
+##### fastlane文件实例: 自定义lane 
 ```
 lane :debug do
   gym(
@@ -18,19 +21,29 @@ lane :debug do
     )
 end
 ```
+  
+##### jenkins执行shell脚本
+```
+fastlane [lane name] [op]  
+```
+  
   
-### 参考资料  
+  
+#### 遇到的的问题  
+Jenkins 从github 获取仓库需要配置[token]https://github.com/settings/tokens/new  
+Jenkins 需安装 Github plugin 插件  安装路径: 系统管理 >> 系统设置 >> GitHub Plugin Configuration  
+
+  
+### 参考资料  
 [fastlane文档](https://docs.fastlane.tools/)  
 [iOS中fastlane的使用](http://blog.devzeng.com/blog/ios-fastlane-in-action.html)  
 [iOS中使用Fastlane实现自动化打包和发布](http://www.cocoachina.com/ios/20170519/19317.html)  
-  
-    
-  
+      
   
   
   
 
-### 使用sh脚本打包
+### 使用sh脚本打包(舍弃的方法)
 * [iOS-AutoPackage](https://github.com/913868456/iOS-AutoPackage) 使用shell脚本打包
   
 #### 该方法Xcode 8.3版本过期, Xcode更新以后缺少[PackageApplication](https://pan.baidu.com/s/1i4BErJ3)文件
